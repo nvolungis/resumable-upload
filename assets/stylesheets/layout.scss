@@ -1,0 +1,19 @@
+.container-fluid {
+  box-sizing: border-box;
+  padding: 0 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.uploader__upload__info-bar {
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.uploader__upload__info-bar-left {
+  margin-top: 7px;
+}
+
+.uploader__upload__time-remaining {
+  // margin-left: 5px;
+}

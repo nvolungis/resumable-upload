@@ -1,0 +1,13 @@
+.progress-bar {
+  background: rgba(blue, .4);
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 30px;
+  height: 30px;
+}
+
+.progress-bar__progress {
+  background: blue;
+  width: 0;
+}
