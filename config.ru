@@ -1,5 +1,7 @@
+require 'rubygems'
 require 'sinatra'
 require 'sinatra/assetpack'
+require 'Haml'
 
 set :root, File.dirname(__FILE__)
 
