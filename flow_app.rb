@@ -1,4 +1,5 @@
 class FlowApp < Sinatra::Base
+  set :public_folder, "public"
 
   get "/" do 
     FlowController.new(params).get

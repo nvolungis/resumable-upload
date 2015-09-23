@@ -1,6 +1,7 @@
 module AssetConfig
   def asset_config
     register Sinatra::AssetPack
+    set :public_folder, 'public'
 
     assets do
       serve '/js', from: 'assets/javascripts'
