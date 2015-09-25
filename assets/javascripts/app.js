@@ -5,7 +5,7 @@
 
   function initialize(){
     var flow = new Flow({
-      target: 'http://locahost:9292/flow'
+      target: 'http://159.203.91.167/flow'
     });
 
     flow.assignBrowse(document.getElementById('browse-button'));

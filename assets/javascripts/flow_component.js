@@ -29,7 +29,7 @@ var Uploader = React.createClass({
   bindFileProgress: function(){
     this.props.flow.on('fileProgress', function(file, chunk){
       var files = this.state.files;
-      
+
       files[file.uniqueIdentifier] = file;
       this.setState(files);
     }.bind(this));
@@ -44,6 +44,7 @@ var Uploader = React.createClass({
       this.setState(files);
     }.bind(this));
   },
+
 
   render: function(){
     return (
@@ -63,11 +64,11 @@ var UploadList = React.createClass({
 
     for(id in this.props.data) {
       upload = this.props.data[id];
-      
+
       UploadNodes.push(
         <Upload id={upload.uniqueIdentifier} upload={upload}> 
           <UploadInfo upload={upload} />
-          
+
           <ProgressBar progress={upload.progress()} />
         </Upload>
       );
@@ -92,7 +93,7 @@ var UploadInfo = React.createClass({
   },
 
   isPaused: function(){
-    var upload = this.props.upload, 
+    var upload = this.props.upload,
         isPaused = false;
 
     return upload.progress() != 0 && !upload.isComplete() && !upload.isUploading();
@@ -217,6 +218,6 @@ var data = [];
 
 
 React.render(
-  <Uploader flow={new Flow({target: '/flow'})}/>,
+  <Uploader flow={new Flow({target: 'http://104.131.165.106/flow', testChunks: false})}/>,
   document.getElementById('content')
 );

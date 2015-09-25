@@ -1063,6 +1063,7 @@
     else if (fileObj.file.webkitSlice)
       function_name = 'webkitSlice';
 
+    console.log(fileObj);
     chunk.readFinished(fileObj.file[function_name](startByte, endByte, fileType));
   }
 
@@ -1306,6 +1307,7 @@
      * @function
      */
     readFinished: function (bytes) {
+      console.log('readfinished', bytes);
       this.readState = 2;
       this.bytes = bytes;
       this.send();
@@ -1352,6 +1354,7 @@
       this.xhr.addEventListener("load", this.doneHandler, false);
       this.xhr.addEventListener("error", this.doneHandler, false);
 
+      console.log('bytes', this.bytes);
       var uploadMethod = evalOpts(this.flowObj.opts.uploadMethod, this.fileObj, this);
       var data = this.prepareXhrRequest(uploadMethod, false, this.flowObj.opts.method, this.bytes);
       this.xhr.send(data);
@@ -1482,9 +1485,13 @@
 
       this.xhr.open(method, target, true);
       this.xhr.withCredentials = this.flowObj.opts.withCredentials;
+      this.xhr.setRequestHeader("X-Content-Range","bytes "+this.startByte+"-"+(this.endByte-1)+"/"+this.fileObj.size);
+      this.xhr.setRequestHeader("Content-Disposition","attachment");
+      this.xhr.setRequestHeader("Session-ID",this.fileObj.uniqueIdentifier);
 
       // Add data from header options
       each(evalOpts(this.flowObj.opts.headers, this.fileObj, this, isTest), function (v, k) {
+        console.log('setting some headers', k, v);
         this.xhr.setRequestHeader(k, v);
       }, this);
 
