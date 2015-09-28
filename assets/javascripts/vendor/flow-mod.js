@@ -1470,10 +1470,8 @@
       this.xhr.open(method, target, true);
       this.xhr.withCredentials = this.flowObj.opts.withCredentials;
       this.xhr.setRequestHeader("X-Content-Range","bytes "+this.startByte+"-"+(this.endByte-1)+"/"+this.fileObj.size);
-      this.xhr.setRequestHeader("Content-Range","bytes "+this.startByte+"-"+(this.endByte-1)+"/"+this.fileObj.size);
-      this.xhr.setRequestHeader("Content-Disposition","attachment");
+      this.xhr.setRequestHeader("Content-Disposition","attachment; filename='" + this.fileObj.name + "'");
       this.xhr.setRequestHeader("Session-ID",this.fileObj.uniqueIdentifier);
-      this.xhr.setRequestHeader("X-Session-ID",this.fileObj.uniqueIdentifier);
 
       // Add data from header options
       each(evalOpts(this.flowObj.opts.headers, this.fileObj, this, isTest), function (v, k) {
