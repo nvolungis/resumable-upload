@@ -10,7 +10,7 @@ var Uploader = React.createClass({
     this.bindFileProgress();
   },
 
-  
+
   bindFilesSubmitted: function(){
     this.props.flow.on('filesSubmitted', function(flowfiles){
       var files = this.state.files;
@@ -218,6 +218,7 @@ var data = [];
 
 
 React.render(
-  <Uploader flow={new Flow({target: 'http://104.131.165.106/flow', testChunks: false})}/>,
+  <Uploader flow={new Flow({target: 'http://104.131.165.106/flow', testChunks: false, simultaneousUploads: 1})}/>,
+
   document.getElementById('content')
 );
