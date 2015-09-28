@@ -1221,12 +1221,51 @@
       }
     };
 
+
+    this.markAlreadyUploadedChunksComplete = function(serverResponse){
+
+      if($.flowObj.resumableChecked) return;
+      $.flowObj.resumableChecked = true;
+
+      var chunkNumber = 1,
+          bytesLoaded = this.getBytesLoaded(serverResponse),
+          chunkOffset,
+          currentChunk,
+          i;
+
+
+      for (i in this.fileObj.chunks) {
+        currentChunk = this.fileObj.chunks[i];
+
+        if(currentChunk.endByte < bytesLoaded){
+          currentChunk.previouslyUploaded = true;
+          chunkOffset = currentChunk.offset;
+        }
+      }
+    },
+
+
+    this.getBytesLoaded = function(serverResponse){
+      var REGEXP =  /0-([0-9]*)\/[0-9]*/,
+          matches = REGEXP.exec(serverResponse);
+
+      if(matches){
+        return matches[1];
+      }
+
+      return -1;
+    },
+
+
     /**
      * Upload has stopped
      * @param {Event} event
      */
     this.doneHandler = function(event) {
       var status = $.status();
+
+      $.markAlreadyUploadedChunksComplete($.xhr.responseText);
+
       if (status === 'success' || status === 'error') {
         $.event(status, $.message());
         $.flowObj.uploadNextChunk();
@@ -1365,6 +1404,10 @@
      * @returns {string} 'pending', 'uploading', 'success', 'error'
      */
     status: function (isTest) {
+      if(this.previouslyUploaded){
+        return 'success';
+      }
+
       if (this.pendingRetry || this.preprocessState === 1) {
         // if pending retry then that's effectively the same as actively uploading,
         // there might just be a slight delay before the retry starts
