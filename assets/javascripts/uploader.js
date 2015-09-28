@@ -3,11 +3,11 @@ var Uploader = React.createClass({
     return {files: {}};
   },
 
-
   componentDidMount: function(){
     this.bindFilePause();
     this.bindFilesSubmitted();
     this.bindFileProgress();
+    this.bindFileSuccess();
   },
 
 
@@ -32,6 +32,14 @@ var Uploader = React.createClass({
 
       files[file.uniqueIdentifier] = file;
       this.setState(files);
+    }.bind(this));
+  },
+
+
+  bindFileSuccess: function(){
+    this.props.flow.on('fileSuccess', function(){
+      console.log('file success');
+      $(window).trigger('file:uploaded');
     }.bind(this));
   },
 

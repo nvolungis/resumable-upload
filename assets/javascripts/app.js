@@ -1,7 +1,6 @@
 (function(window, document, undefined){
   document.addEventListener('DOMContentLoaded', initialize); 
 
-
   function initialize(){
     return;
     var flow = new Flow({
