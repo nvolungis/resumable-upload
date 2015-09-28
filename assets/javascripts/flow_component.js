@@ -218,7 +218,7 @@ var data = [];
 
 
 React.render(
-  <Uploader flow={new Flow({target: 'http://104.131.165.106/flow', testChunks: false, simultaneousUploads: 1})}/>,
+  <Uploader flow={new Flow({target: 'http://104.131.165.106/flow', testChunks: false, simultaneousUploads: 1, method: 'octet'})}/>,
 
   document.getElementById('content')
 );
