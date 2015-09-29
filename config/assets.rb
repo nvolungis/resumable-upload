@@ -5,12 +5,8 @@ module AssetConfig
 
     assets do
       serve '/js', from: 'assets/javascripts'
-      js :application, [
-        '/js/vendor/*.js',
-        '/js/app.js'
-      ]
-
       serve '/css', from: 'assets/stylesheets'
+
       css :application, [
         '/css/layout.css',
         '/css/dropzone.css',

@@ -7,9 +7,20 @@
     %script{src:"https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/JSXTransformer.js"}
     %script{src:"https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"}
     %script{type:"text/javascript", src:"js/vendor/flow-mod.js"}
-    %script{type:"text/javascript", src:"js/app.js"}
-    %script{type:"text/jsx", src:"js/uploader.js"}
-    %script{type:"text/jsx", src:"js/videos.js"}
+
+    %script{type:"text/jsx", src:"js/uploaderApp/uploadList.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/uploadInfo.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/uploadToggleButton.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/upload.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/uploader.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/progressBar.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/dropzone.js"}
+    %script{type:"text/jsx", src:"js/uploaderApp/index.js"}
+
+    %script{type:"text/jsx", src:"js/videosApp/videos.js"}
+    %script{type:"text/jsx", src:"js/videosApp/videoList.js"}
+    %script{type:"text/jsx", src:"js/videosApp/video.js"}
+    %script{type:"text/jsx", src:"js/videosApp/index.js"}
 
     = css :application
 
@@ -17,11 +28,10 @@
     .jumbotron
       .container-fluid
         %h1.display-1 Resumable upload 
-        %p.lead with Sinatra + React
+        %p.lead nginx + sinatra + react
 
     .container-fluid
       #content
-
 
     .container-fluid
       #videos
