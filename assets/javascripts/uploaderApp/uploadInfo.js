@@ -1,6 +1,7 @@
 var UploadInfo = React.createClass({
   timeRemaining: function(){
     var remaining = this.props.upload.timeRemaining();
+    console.log(remaining);
     if(this.isPaused()) return " - " + 'Paused';
     if(remaining == 'Infinity') return "";
     if((remaining / 60) == 0) return "";
@@ -17,6 +18,7 @@ var UploadInfo = React.createClass({
 
 
   status: function(){
+    console.log('status', this.isPaused());
     if(this.isPaused()){
       return 'paused';
     }
@@ -48,7 +50,6 @@ var UploadInfo = React.createClass({
           <span className="uploader__upload__time-remaining">{this.timeRemaining()}</span>
         </div>
         <div className="pull-right">
-          <UploadToggleButton upload={upload} onClick={this.handleToggleClick} status={this.status()} />
         </div>
       </div>
     );
